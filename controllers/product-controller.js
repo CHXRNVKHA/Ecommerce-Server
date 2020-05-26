@@ -1,4 +1,4 @@
-const service = require('');
+const service = require('../services/product-service');
 class ProductController {
     constructor(){};
     getAllProducts = async (req, res) => {
