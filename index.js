@@ -9,6 +9,8 @@ const app = express();
 const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000;
 
+
+
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
@@ -21,8 +23,8 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser);
 app.use(express.static(path.join(__dirname + 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/users', router.userRouter);
+app.use('/api/products', router.productRouter);
 
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);

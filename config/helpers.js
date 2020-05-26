@@ -1,13 +1,15 @@
-const Sequelize = require('sequelize');
+const MySqli = require('mysqli');
 
-const sequelize = new Sequelize('mega_shop_updated', 'root', '3334618', {
-    dialect: 'mysql',
+const conn = new MySqli({
     host: 'localhost',
-    define: {
-      timestamps: false
-    },
+    post: 3306,
+    user: 'root',
+    pass: '3334618',
+    db: 'mega_shop_updated',
 });
 
-//sequelize.sync();
+let db = conn.emit(false, '');
 
-module.exports = sequelize;
+module.exports = {
+    database: db,
+}
