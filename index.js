@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 
 
 
-app.use(cors({
+/*app.use(cors({
     origin: '*',
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
     allowedHeaders: 'Content-type, Authorization, Origin, X-Requested-With, Accept',
@@ -23,8 +23,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser);
 app.use(express.static(path.join(__dirname + 'public')));
-
-app.use('/api/users', router.userRouter);
+*/
+//app.use('/api/users', router.userRouter);
 app.use('/api/products', router.productRouter);
 
 app.listen(port, hostname, () => {

@@ -33,8 +33,9 @@ const getAll = function (req) {
         .sort({ id: .1 })
         .getAll()
         .then(prods => {
+            console.log(prods);
             return prods;
-        });
+        }).catch(err => console.log(err));
 }
 
 module.exports = {
