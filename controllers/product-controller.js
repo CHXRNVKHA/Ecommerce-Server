@@ -3,7 +3,7 @@ class ProductController {
     constructor(){};
     getAllProducts = async (req, res) => {
         try {
-            const result = await service.getAll(req);
+            const result = await service.getAll(req, res);
             if (result.length > 0) {
                 res.status(200).json({
                     count: result.length,

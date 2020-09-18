@@ -1,6 +1,6 @@
 const {database} = require('../config/helpers');
 
-const getAll = function (req) {
+const getAll = function (req, res) {
     let page = (req.query.page != undefined && req.query.page != 0) ? req.query.page : 1;
     let limit = (req.query.limit != undefined && req.query.limit != 0) ? req.query.limit : 10;
 
@@ -16,7 +16,9 @@ const getAll = function (req) {
         endVal = 10;
     }
 
-    database.table('products as p')
+    
+
+    return database.table('products as p')
         .join([{
             table: 'categories as c',
             on: 'c.id = p.cat_id',
@@ -33,7 +35,6 @@ const getAll = function (req) {
         .sort({ id: .1 })
         .getAll()
         .then(prods => {
-            console.log(prods);
             return prods;
         }).catch(err => console.log(err));
 }
