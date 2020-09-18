@@ -18,7 +18,13 @@
   },
   "homepage": "https://github.com/WonderXuy/Ecommerce-Server#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysqli": "^3.0.11"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.4"
   }
 }
