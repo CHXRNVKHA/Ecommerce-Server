@@ -10,5 +10,10 @@ router.get('/', orderController.getAllOrders);
 router.get('/:orderId', orderController.getOrderById);
 
 router.post('/add', orderController.addOrder);
+router.post('/payment', (req, res) => {
+    setTimeout(() => {
+        res.status(200).json({success: true})
+    }, 3000);
+});
 
 module.exports = router;
