@@ -17,7 +17,7 @@ class OrderController {
             res.status(400).send({error:e.message});
         }
     };
-    
+
     getOrderById = async (req, res) => {
         try {
             const result = await service.getById(req);
@@ -25,7 +25,7 @@ class OrderController {
                 res.status(200).json(result);
             }
             else {
-                res.json({message: `No order found with order id ${req.params.orderId}`});
+                res.json({message: `No orders found with order id ${req.params.orderId}`});
             }
         }
         catch (e) {
