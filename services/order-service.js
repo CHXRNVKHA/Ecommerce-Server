@@ -50,7 +50,58 @@ const getById = function (req) {
         }).catch(err => console.log(err));
 }
 
+const add = function(req, res) {
+    let {userId, products} = req.body;
+    
+    if (userId != null && userId > 0 && !isNaN(userId)) {
+        database.table('orders')
+            .insert({
+                user_id: userId,
+            }).then(newOrderId => {
+                if (newOrderId > 0) {
+                    products.forEach(async (p) => {
+                        let data = await database.table('products').filter({id: p.id}).withFields(['quantity']).get();
+                        let inCart = p.incart;
+
+                        if (data.quantity > 0) {
+                            data.quantity -= inCart;
+                            if (data.quantity < 0) {
+                                data.quantity = 0;
+                            }
+                        } else {
+                            data.quantity = 0;
+                        }
+
+                        database.table('orders_details')
+                            .insert({
+                                'order_id': newOrderId,
+                                'product_id': p.id,
+                                'quantity': inCart,
+                            }).then(newId => {
+                                database.table('products')
+                                    .filter({id: p.id})
+                                    .update({
+                                        quantity: data.quantity
+                                    }).then(successNum => {}).catch(err => console.log(err));
+                            }).catch(err => console.log(err));
+                    })
+                } else {
+                    res.json({message: 'New order fails while adding order details', success: false});
+                }
+                res.json({
+                    message: `Order succesfully placed with order id ${newOrderId}`,
+                    success: true,
+                    order_id: newOrderId,
+                    products: products,
+                })
+            }).catch(err => console.log(err));
+    } else {
+        res.json({message: 'New order fails', success: false});
+    }
+}
+
 module.exports = {
    getAll,
    getById,
+   add,
 }
