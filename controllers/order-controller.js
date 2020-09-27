@@ -32,6 +32,15 @@ class OrderController {
             res.status(400).send({error:e.message});
         }
     }
+
+    addOrder = async (req, res) => {
+        try {
+            const result = await service.add(req, res);
+        }
+        catch (e) {
+            res.status(400).send({error:e.message});
+        }
+    }
 }
 
 module.exports = OrderController;
