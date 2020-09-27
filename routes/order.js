@@ -1,11 +1,11 @@
 const express = require('express');
 
 const OrderController = require('../controllers/order-controller');
-const OrderController = new OrderController();
+const orderController = new OrderController();
 
 const router = express.Router();
 
 
-router.get('/', OrderController.getAllOrders);
+router.get('/', orderController.getAllOrders);
 
 module.exports = router;
