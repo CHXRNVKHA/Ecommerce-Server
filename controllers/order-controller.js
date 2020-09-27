@@ -21,7 +21,7 @@ class OrderController {
     getOrderById = async (req, res) => {
         try {
             const result = await service.getById(req);
-            if (result) {
+            if (result.length > 0) {
                 res.status(200).json(result);
             }
             else {
