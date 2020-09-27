@@ -17,6 +17,21 @@ class OrderController {
             res.status(400).send({error:e.message});
         }
     };
+    
+    getOrderById = async (req, res) => {
+        try {
+            const result = await service.getById(req);
+            if (result) {
+                res.status(200).json(result);
+            }
+            else {
+                res.json({message: `No order found with order id ${req.params.orderId}`});
+            }
+        }
+        catch (e) {
+            res.status(400).send({error:e.message});
+        }
+    }
 }
 
 module.exports = OrderController;
