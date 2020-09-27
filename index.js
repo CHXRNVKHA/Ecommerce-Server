@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname + 'public')));
 
 //app.use('/api/users', router.userRouter);
 app.use('/api/products', router.productRouter);
+app.use('/api/orders', router.orderRouter);
 
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);

@@ -13,7 +13,6 @@ class ProductController {
             else {
                 res.json({message: 'No products founds'});
             }
-            res.send(result);
         }
         catch (e) {
             res.status(400).send({error:e.message});

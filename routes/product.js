@@ -1,5 +1,4 @@
 const express = require('express');
-const {database} = require('../config/helpers');
 
 const ProductController = require('../controllers/product-controller');
 const productController = new ProductController();
