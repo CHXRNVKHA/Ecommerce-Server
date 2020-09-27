@@ -6,4 +6,7 @@ const OrderController = new OrderController();
 
 const router = express.Router();
 
+
+router.get('/', OrderController.getAllOrders);
+
 module.exports = router;
