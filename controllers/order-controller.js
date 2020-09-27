@@ -12,7 +12,6 @@ class OrderController {
             else {
                 res.json({message: 'No orders founds'});
             }
-            res.send(result);
         }
         catch (e) {
             res.status(400).send({error:e.message});
