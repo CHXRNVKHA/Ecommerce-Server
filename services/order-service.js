@@ -24,6 +24,33 @@ const getAll = function (req) {
         }).catch(err => console.log(err));
 }
 
+const getById = function (req) {
+    let orderId = req.params.orderId;
+
+    return database.table('orders_details as od')
+        .join([
+            {
+                table: 'orders as o',
+                on: 'o.id = od.order_id',
+            },
+            {
+                table: 'products as p',
+                on: 'p.id = od.product_id',
+            },
+            {
+                table: 'users as u',
+                on: 'u.id = o.user_id',
+            },
+        ])
+        .withFields(['o.id', 'p.title as name', 'p.description', 'p.price', 'u.username'])
+        .filter({'o.id': orderId})
+        .getAll()
+        .then(orders => {
+            return orders;
+        }).catch(err => console.log(err));
+}
+
 module.exports = {
    getAll,
+   getById,
 }
