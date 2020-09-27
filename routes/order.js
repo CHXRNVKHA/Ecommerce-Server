@@ -7,5 +7,6 @@ const router = express.Router();
 
 
 router.get('/', orderController.getAllOrders);
+router.get('/:orderId', orderController.getOrderById);
 
 module.exports = router;
