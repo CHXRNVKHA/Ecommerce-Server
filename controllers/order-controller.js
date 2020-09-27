@@ -6,12 +6,11 @@ class OrderController {
             const result = await service.getAll(req);
             if (result.length > 0) {
                 res.status(200).json({
-                    count: result.length,
-                    products: result,
+                    orders: result,
                 });
             }
             else {
-                res.json({message: 'No products founds'});
+                res.json({message: 'No orders founds'});
             }
             res.send(result);
         }
