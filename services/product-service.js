@@ -24,6 +24,7 @@ const getAll = function (req) {
         .withFields([
             'c.title as category',
             'p.title as name',
+            'p.description',
             'p.price',
             'p.quantity',
             'p.image',
